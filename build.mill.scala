@@ -64,13 +64,4 @@ object YourChiselProject extends ScalaModule with ScalafmtModule { m =>
         ivy"edu.berkeley.cs::chiseltest:6.0.0"
     )
   }
-
-  // Configure additional Maven repositories for dependency resolution
-  def repositoriesTask = Task.Anon {
-    Seq(
-      coursier.MavenRepository("https://repo.scala-sbt.org/scalasbt/maven-releases"),
-      coursier.MavenRepository("https://oss.sonatype.org/content/repositories/releases"),
-      coursier.MavenRepository("https://oss.sonatype.org/content/repositories/snapshots")
-    ) ++ super.repositoriesTask()
-  }
 }
