@@ -1,7 +1,7 @@
 
 BUILD_DIR = ./generated-src
 
-PROJECT = YourChiselProject
+PROJECT = TopLevelModule
 
 
 .PHONY: verilog test help reformat checkformat clean

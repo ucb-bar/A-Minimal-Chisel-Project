@@ -15,12 +15,10 @@ import mill.scalalib._
 // Import BSP (Build Server Protocol) support
 import mill.bsp._
 
-
 /**
- * Main build definition for the Chisel project.
- * This object defines the project structure and its dependencies.
+ * Common configuration trait for Chisel projects
  */
-object YourChiselProject extends ScalaModule with ScalafmtModule { m =>
+trait ChiselModule extends ScalaModule with ScalafmtModule { m =>
   // Configure Scala version based on Chisel version
   override def scalaVersion = "2.13.16"
 
@@ -52,4 +50,21 @@ object YourChiselProject extends ScalaModule with ScalafmtModule { m =>
       ivy"edu.berkeley.cs::chiseltest:6.0.0"
     )
   }
+}
+
+/**
+ * Main build definition for the Chisel project.
+ * This object defines the project structure and its dependencies.
+ */
+object TopLevelModule extends ChiselModule { m =>
+  // Add ExternalModule as a dependency
+  override def moduleDeps = Seq(ExternalModule)
+}
+
+/**
+ * Main build definition for the Chisel project.
+ * This object defines the project structure and its dependencies.
+ */
+object ExternalModule extends ChiselModule { m =>
+  // Add any project-specific configurations here
 }

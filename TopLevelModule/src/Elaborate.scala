@@ -30,5 +30,5 @@ object Elaborate extends App {
   // - Creates a new instance of CustomDesign
   // - Passes through command line arguments
   // - Applies firtool configuration options
-  ChiselStage.emitSystemVerilogFile(new CustomDesign(), args, firtoolOptions)
+  ChiselStage.emitSystemVerilogFile(new TopLevelModule.CustomDesign(), args, firtoolOptions)
 }
