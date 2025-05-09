@@ -1,6 +1,6 @@
 /**
  * build.sc
- * 
+ *
  * This is the build configuration file for the Chisel project.
  * It defines the project structure and its dependencies.
  */
@@ -21,11 +21,8 @@ import mill.bsp._
  * This object defines the project structure and its dependencies.
  */
 object YourChiselProject extends ScalaModule with ScalafmtModule { m =>
-  // Flag to switch between Chisel 3.x and Chisel 6.x
-  val useChisel3 = false
-  
   // Configure Scala version based on Chisel version
-  override def scalaVersion = if (useChisel3) "2.13.10" else "2.13.15"
+  override def scalaVersion = "2.13.16"
 
   // Scala compiler options
   override def scalacOptions = Seq(
@@ -36,19 +33,13 @@ object YourChiselProject extends ScalaModule with ScalafmtModule { m =>
   )
 
   // Define Chisel dependencies based on version
-  override def ivyDeps = Agg(  
-    if (useChisel3)
-      ivy"edu.berkeley.cs::chisel3:3.6.0"
-    else
-      ivy"org.chipsalliance::chisel:6.6.0"
+  override def ivyDeps = Agg(
+    ivy"org.chipsalliance::chisel:7.0.0-RC1",
   )
 
   // Add Chisel compiler plugin
   override def scalacPluginIvyDeps = Agg(
-    if (useChisel3)
-      ivy"edu.berkeley.cs:::chisel3-plugin:3.6.0"
-    else
-      ivy"org.chipsalliance:::chisel-plugin:6.6.0"
+    ivy"org.chipsalliance:::chisel-plugin:7.0.0-RC1",
   )
 
   /**
@@ -58,10 +49,7 @@ object YourChiselProject extends ScalaModule with ScalafmtModule { m =>
     // Add test dependencies
     override def ivyDeps = super.ivyDeps() ++ Agg(
       ivy"org.scalatest::scalatest::3.2.19",
-      if (useChisel3)
-        ivy"edu.berkeley.cs::chiseltest:0.6.0"
-      else
-        ivy"edu.berkeley.cs::chiseltest:6.0.0"
+      ivy"edu.berkeley.cs::chiseltest:6.0.0"
     )
   }
 }
